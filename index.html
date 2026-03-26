@@ -2,10 +2,30 @@
 <html>
 <head>
     <title>Kevin's Terminal</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: monospace;
+            padding: 20px;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #00ff00;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { background-color: transparent; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Kevin's System</h1>
-    <p>> Initializing portfolio...</p>
-    <p>> Access granted.</p>
+
+<h1>> KevinOS v1.0</h1>
+<p>> Loading portfolio...</p>
+<p>> Welcome, user.</p>
+<p>> Type "help" to begin<span class="cursor"></span></p>
+
 </body>
 </html>
