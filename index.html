@@ -168,11 +168,15 @@ body {
 </div>
 
 <script>
+let isOpen = false;
+
 function togglePlayer() {
   const player = document.getElementById("spotify-player");
   const button = document.querySelector("#music-bar button");
 
-  if (player.style.display === "none") {
+  isOpen = !isOpen;
+
+  if (isOpen) {
     player.style.display = "block";
     button.textContent = "HIDE";
   } else {
