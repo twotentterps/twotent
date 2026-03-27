@@ -1,60 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>two tent terps</title>
-    <style>
-        body {
-            background-color: black;
-            color: #00ff00;
-            font-family: monospace;
-            text-align: center;
-            padding-top: 80px;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>two tent terps</title>
 
-        .logo {
-            font-size: 42px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #00ff00;
-        }
+<style>
+body {
+    background-color: black;
+    color: #00ff00;
+    font-family: monospace;
+    text-align: center;
+    padding: 60px 15px 120px; /* extra bottom space for music bar */
+    margin: 0;
+}
 
-        .subtitle {
-            margin-bottom: 50px;
-            color: #00cc00;
-        }
+.logo {
+    font-size: 42px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #00ff00;
+}
 
-        .cmd {
-            display: block;
-            margin: 12px auto;
-            width: 300px;
-            text-align: left;
-            padding: 10px;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+.subtitle {
+    margin-bottom: 40px;
+    color: #00cc00;
+}
 
-        .cmd:hover {
-            background-color: #00ff00;
-            color: black;
-        }
+.cmd {
+    display: block;
+    margin: 12px auto;
+    width: 100%;
+    max-width: 320px;
+    text-align: left;
+    padding: 14px;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-        .prompt {
-            color: #00ff00;
-        }
+.cmd:hover {
+    background-color: #00ff00;
+    color: black;
+}
 
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            background-color: #00ff00;
-            animation: blink 1s infinite;
-        }
+.prompt {
+    color: #00ff00;
+}
 
-        @keyframes blink {
-            50% { background-color: transparent; }
-        }
-    </style>
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #00ff00;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { background-color: transparent; }
+}
+
+/* 🎧 MUSIC OVERLAY */
+#music-bar {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #0d1117;
+    border: 1px solid #00ff9c;
+    color: #00ff9c;
+    font-family: monospace;
+    padding: 10px 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px #00ff9c55;
+    z-index: 9999;
+    font-size: 13px;
+}
+
+#music-bar button {
+    background: transparent;
+    border: 1px solid #00ff9c;
+    color: #00ff9c;
+    padding: 4px 8px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+#music-bar button:hover {
+    background: #00ff9c;
+    color: #0d1117;
+}
+
+#spotify-player {
+    position: fixed;
+    bottom: 70px;
+    right: 15px;
+    display: none;
+    z-index: 9999;
+    width: 90vw;
+    max-width: 320px;
+}
+
+/* 📱 MOBILE OPTIMIZATION */
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .cmd {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    #music-bar {
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        width: 90%;
+        text-align: center;
+    }
+
+    #spotify-player {
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+    }
+}
+</style>
 </head>
+
 <body>
 
 <div class="logo">> two tent terps</div>
@@ -68,7 +144,7 @@
     <span class="prompt">$</span> open telegram
 </a>
 
-<a class="cmd" href="https://www.instagram.com/twotentterps?igsh=MTVsYTRpdTVrb2d3eg%3D%3D&utm_source=qr">
+<a class="cmd" href="https://www.instagram.com/twotentterps" target="_blank">
     <span class="prompt">$</span> open instagram
 </a>
 
@@ -76,55 +152,15 @@
     <span class="prompt">$</span> send email
 </a>
 
-<!-- 🎧 Hacker Music Overlay -->
-<style>
-  #music-bar {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #0d1117;
-    border: 1px solid #00ff9c;
-    color: #00ff9c;
-    font-family: monospace;
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #00ff9c55;
-    z-index: 9999;
-  }
-
-  #music-bar button {
-    background: transparent;
-    border: 1px solid #00ff9c;
-    color: #00ff9c;
-    padding: 5px 10px;
-    margin-right: 10px;
-    cursor: pointer;
-    font-family: monospace;
-  }
-
-  #music-bar button:hover {
-    background: #00ff9c;
-    color: #0d1117;
-  }
-
-  #spotify-player {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    display: none;
-    z-index: 9999;
-  }
-</style>
-
+<!-- 🎧 MUSIC UI -->
 <div id="music-bar">
-  <span>▶ TWOTENTTERPS RADIO</span>
+  ▶ RADIO
   <button onclick="togglePlayer()">PLAY</button>
 </div>
 
 <div id="spotify-player">
-  <iframe style="border-radius:12px"
+  <iframe style="border-radius:12px; width:100%;"
     src="https://open.spotify.com/embed/playlist/3rZFVoXgqSaIOSkBWzl0Qs"
-    width="300"
     height="152"
     frameborder="0"
     allow="autoplay; clipboard-write; encrypted-media;">
