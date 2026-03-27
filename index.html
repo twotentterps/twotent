@@ -76,16 +76,75 @@
     <span class="prompt">$</span> send email
 </a>
 
-<div style="max-width: 600px; margin: auto;">
+<!-- 🎧 Hacker Music Overlay -->
+<style>
+  #music-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d1117;
+    border: 1px solid #00ff9c;
+    color: #00ff9c;
+    font-family: monospace;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ff9c55;
+    z-index: 9999;
+  }
+
+  #music-bar button {
+    background: transparent;
+    border: 1px solid #00ff9c;
+    color: #00ff9c;
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: monospace;
+  }
+
+  #music-bar button:hover {
+    background: #00ff9c;
+    color: #0d1117;
+  }
+
+  #spotify-player {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: none;
+    z-index: 9999;
+  }
+</style>
+
+<div id="music-bar">
+  <span>▶ TWOTENTTERPS RADIO</span>
+  <button onclick="togglePlayer()">PLAY</button>
+</div>
+
+<div id="spotify-player">
   <iframe style="border-radius:12px"
     src="https://open.spotify.com/embed/playlist/3rZFVoXgqSaIOSkBWzl0Qs"
-    width="100%"
+    width="300"
     height="152"
     frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy">
+    allow="autoplay; clipboard-write; encrypted-media;">
   </iframe>
 </div>
+
+<script>
+function togglePlayer() {
+  const player = document.getElementById("spotify-player");
+  const button = document.querySelector("#music-bar button");
+
+  if (player.style.display === "none") {
+    player.style.display = "block";
+    button.textContent = "HIDE";
+  } else {
+    player.style.display = "none";
+    button.textContent = "PLAY";
+  }
+}
+</script>
 
 <p style="margin-top:50px;">
     <span class="prompt">$</span> system ready<span class="cursor"></span>
