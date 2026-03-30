@@ -10,10 +10,11 @@ body {
     color: #00ff00;
     font-family: monospace;
     text-align: center;
-    padding: 60px 15px 120px; /* extra bottom space for music bar */
+    padding: 60px 15px 120px;
     margin: 0;
 }
 
+/* TEXT */
 .logo {
     font-size: 42px;
     margin-bottom: 10px;
@@ -25,6 +26,22 @@ body {
     color: #00cc00;
 }
 
+.prompt {
+    color: #00ff00;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #00ff00;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { background-color: transparent; }
+}
+
+/* LINKS */
 .cmd {
     display: block;
     margin: 12px auto;
@@ -43,22 +60,7 @@ body {
     color: black;
 }
 
-.prompt {
-    color: #00ff00;
-}
-
-.cursor {
-    display: inline-block;
-    width: 10px;
-    background-color: #00ff00;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% { background-color: transparent; }
-}
-
-/* 🎧 MUSIC OVERLAY */
+/* 🎧 MUSIC */
 #music-bar {
     position: fixed;
     bottom: 15px;
@@ -66,7 +68,6 @@ body {
     background: #0d1117;
     border: 1px solid #00ff9c;
     color: #00ff9c;
-    font-family: monospace;
     padding: 10px 12px;
     border-radius: 8px;
     box-shadow: 0 0 12px #00ff9c55;
@@ -98,21 +99,11 @@ body {
     max-width: 320px;
 }
 
-/* 📱 MOBILE OPTIMIZATION */
+/* 📱 MOBILE */
 @media (max-width: 600px) {
-
-    .logo {
-        font-size: 28px;
-    }
-
-    .subtitle {
-        font-size: 14px;
-    }
-
-    .cmd {
-        font-size: 14px;
-        padding: 12px;
-    }
+    .logo { font-size: 28px; }
+    .subtitle { font-size: 14px; }
+    .cmd { font-size: 14px; padding: 12px; }
 
     #music-bar {
         left: 50%;
@@ -129,26 +120,76 @@ body {
     }
 }
 
+/* 🖥️ BOOT SCREEN */
 #boot-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  color: #00ff00;
-  font-family: monospace;
-  padding: 20px;
-  z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: #00ff00;
+    padding: 20px;
+    z-index: 99999;
 }
 
 #boot-text {
-  white-space: pre-wrap;
+    white-space: pre-wrap;
 }
-
 </style>
 </head>
 
+<body>
+
+<!-- 🖥️ BOOT SCREEN -->
+<div id="boot-screen">
+  <pre id="boot-text"></pre>
+</div>
+
+<!-- 🌐 MAIN SITE -->
+<div id="main-site" style="display:none;">
+
+  <div class="logo">> two tent terps</div>
+  <div class="subtitle">> links | content | community</div>
+
+  <a class="cmd" href="https://www.youtube.com/@twotentterps" target="_blank">
+      <span class="prompt">$</span> open youtube
+  </a>
+
+  <a class="cmd" href="https://t.me/twotentterps">
+      <span class="prompt">$</span> open telegram
+  </a>
+
+  <a class="cmd" href="https://www.instagram.com/twotentterps" target="_blank">
+      <span class="prompt">$</span> open instagram
+  </a>
+
+  <a class="cmd" href="mailto:hitusup@twotentterps.shop">
+      <span class="prompt">$</span> send email
+  </a>
+
+  <!-- 🎧 MUSIC -->
+  <div id="music-bar">
+    ▶ RADIO
+    <button onclick="togglePlayer()">PLAY</button>
+  </div>
+
+  <div id="spotify-player">
+    <iframe style="border-radius:12px; width:100%;"
+      src="https://open.spotify.com/embed/playlist/3rZFVoXgqSaIOSkBWzl0Qs"
+      height="152"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media;">
+    </iframe>
+  </div>
+
+  <p style="margin-top:50px;">
+      <span class="prompt">$</span> system ready<span class="cursor"></span>
+  </p>
+
+</div>
+
+<!-- 🧠 BOOT SCRIPT -->
 <script>
 const bootLines = [
   "> initializing system...",
@@ -161,14 +202,13 @@ const bootLines = [
 
 let line = 0;
 let char = 0;
-const speed = 30;
 
 function typeBoot() {
   if (line < bootLines.length) {
     if (char < bootLines[line].length) {
       document.getElementById("boot-text").textContent += bootLines[line].charAt(char);
       char++;
-      setTimeout(typeBoot, speed);
+      setTimeout(typeBoot, 30);
     } else {
       document.getElementById("boot-text").textContent += "\n";
       line++;
@@ -185,47 +225,8 @@ function typeBoot() {
 
 typeBoot();
 </script>
-    
-<body>
 
-<div id="boot screen">
-    <pre id="boot screen"></pre>
-</div>    
-
-<div class="logo">> two tent terps</div>
-<div class="subtitle">> links | content | community</div>
-
-<a class="cmd" href="https://www.youtube.com/@twotentterps">
-    <span class="prompt">$</span> open youtube
-</a>
-
-<a class="cmd" href="https://t.me/twotentterps">
-    <span class="prompt">$</span> open telegram
-</a>
-
-<a class="cmd" href="https://www.instagram.com/twotentterps" target="_blank">
-    <span class="prompt">$</span> open instagram
-</a>
-
-<a class="cmd" href="mailto:hitusup@twotentterps.shop">
-    <span class="prompt">$</span> send email
-</a>
-
-<!-- 🎧 MUSIC UI -->
-<div id="music-bar">
-  ▶ RADIO
-  <button onclick="togglePlayer()">SHOW</button>
-</div>
-
-<div id="spotify-player">
-  <iframe style="border-radius:12px; width:100%;"
-    src="https://open.spotify.com/embed/playlist/3rZFVoXgqSaIOSkBWzl0Qs"
-    height="152"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media;">
-  </iframe>
-</div>
-
+<!-- 🎧 MUSIC SCRIPT -->
 <script>
 let isOpen = false;
 
@@ -240,14 +241,10 @@ function togglePlayer() {
     button.textContent = "HIDE";
   } else {
     player.style.display = "none";
-    button.textContent = "SHOW";
+    button.textContent = "PLAY";
   }
 }
 </script>
-
-<p style="margin-top:50px;">
-    <span class="prompt">$</span> system ready<span class="cursor"></span>
-</p>
 
 </body>
 </html>
