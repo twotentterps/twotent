@@ -128,9 +128,64 @@ body {
         right: auto;
     }
 }
+
+#boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  padding: 20px;
+  z-index: 99999;
+}
+
+#boot-text {
+  white-space: pre-wrap;
+}
+
 </style>
 </head>
 
+<script>
+const bootLines = [
+  "> initializing system...",
+  "> loading modules...",
+  "> connecting to network...",
+  "> starting radio service...",
+  "> access granted",
+  "> welcome to twotentterps"
+];
+
+let line = 0;
+let char = 0;
+const speed = 30;
+
+function typeBoot() {
+  if (line < bootLines.length) {
+    if (char < bootLines[line].length) {
+      document.getElementById("boot-text").textContent += bootLines[line].charAt(char);
+      char++;
+      setTimeout(typeBoot, speed);
+    } else {
+      document.getElementById("boot-text").textContent += "\n";
+      line++;
+      char = 0;
+      setTimeout(typeBoot, 300);
+    }
+  } else {
+    setTimeout(() => {
+      document.getElementById("boot-screen").style.display = "none";
+      document.getElementById("main-site").style.display = "block";
+    }, 500);
+  }
+}
+
+typeBoot();
+</script>
+    
 <body>
 
 <div id="boot screen">
