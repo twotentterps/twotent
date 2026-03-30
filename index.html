@@ -232,15 +232,18 @@ let isOpen = false;
 function togglePlayer() {
   const player = document.getElementById("spotify-player");
   const button = document.querySelector("#music-bar button");
+  const label = document.querySelector("#music-bar span");
 
   isOpen = !isOpen;
 
   if (isOpen) {
     player.style.display = "block";
     button.textContent = "HIDE";
+    label.textContent = "▶ RADIO ONLINE";
   } else {
     player.style.display = "none";
     button.textContent = "PLAY";
+    label.textContent = "▶ RADIO OFFLINE";
   }
 }
 </script>
