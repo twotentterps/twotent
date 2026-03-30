@@ -170,9 +170,9 @@ body {
 
   <!-- 🎧 MUSIC -->
   <div id="music-bar">
-    ▶ RADIO
-    <button onclick="togglePlayer()">PLAY</button>
-  </div>
+  <span id="radio-label">▶ RADIO OFFLINE</span>
+  <button onclick="togglePlayer()">PLAY</button>
+</div>
 
   <div id="spotify-player">
     <iframe style="border-radius:12px; width:100%;"
@@ -239,11 +239,11 @@ function togglePlayer() {
   if (isOpen) {
     player.style.display = "block";
     button.textContent = "HIDE";
-    label.firstChild.textContent = "▶ RADIO ONLINE";
+    label.textContent = "▶ RADIO ONLINE";
   } else {
     player.style.display = "none";
     button.textContent = "PLAY";
-    label.firstChild.textContent = "▶ RADIO OFFLINE";
+    label.textContent = "▶ RADIO OFFLINE";
   }
 }
 </script>
